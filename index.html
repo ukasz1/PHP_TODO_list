@@ -4,15 +4,36 @@
         <meta charset="utf-8">
         <link href="styles.css" type="text/css" rel="stylesheet" />
 
-        <title>Strona testowa</title>      
+        <title>TODO list</title>      
     </head>
 
-    <body>
-        <h1>TODO List</h1>
-        <div id="content">
-            <div>Dzisiaj jest: 
-                <span id="dateSection"></span></div>
-        </div>
+    <body onload="czas()">
+		<div id="allDocument">
+			
+			<header>
+				<h1>TODO List</h1>
+			</header>
+			
+			
+			<div id="dateSection">								
+				<div>Aktualny czas:
+					<span id="sekcja_daty"></span>
+				</div>
+			</div>
+			
+			<div id="content">
+				<p>Aby wprowadzić nowy event uzupełnij opis, określ deadline i naciśnij przycisk.</p>
+				
+				<form action="">
+					<textarea id="opis" name="challange" rows="4" cols="80" placeholder="Opis eventu..."></textarea> <br /><br />
+					<input type="submit" />
+				</form>
+				
+				
+				
+			</div>
+			
+		</div>
     </body>
     <script src="scripts.js" type="text/javascript"></script>
 </html>
