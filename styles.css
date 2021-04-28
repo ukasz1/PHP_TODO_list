@@ -5,3 +5,6 @@
 	padding: 20px;
 }
 
+form > div {
+	margin-bottom: 18px;
+}

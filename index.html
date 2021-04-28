@@ -25,7 +25,76 @@
 				<p>Aby wprowadzić nowy event uzupełnij opis, określ deadline i naciśnij przycisk.</p>
 				
 				<form action="">
-					<textarea id="opis" name="challange" rows="4" cols="80" placeholder="Opis eventu..."></textarea> <br /><br />
+				
+					<div><textarea id="description" name="challenge" rows="4" cols="80" placeholder="Opis eventu..."></textarea></div>
+					
+					<div>
+						<label for="cars">Rodzaj zadania:</label>
+						<select name="taskName" id="taskName">
+							<option value="work">Praca</option>
+							<option value="study">Nauka</option>
+							<option value="personal">Osobiste</option>
+							<option value="other">Inne</option>
+						</select>
+					</div>
+					
+					<div>
+						<label for="day">Deadline:</label>
+						<select name="day" id="day">
+							<option value="day">Dzień</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+							<option value="14">14</option>
+							<option value="15">15</option>
+							<option value="16">16</option>
+							<option value="17">17</option>
+							<option value="18">18</option>
+							<option value="19">19</option>
+							<option value="20">20</option>
+							<option value="21">21</option>
+							<option value="22">22</option>
+							<option value="23">23</option>
+							<option value="24">24</option>
+							<option value="25">25</option>
+							<option value="26">26</option>
+							<option value="27">27</option>
+							<option value="28">28</option>
+							<option value="29">29</option>
+							<option value="30">30</option>
+							<option value="31">31</option>
+						</select>
+						
+						<select name="month" id="month">
+							<option value="month">Miesiąc</option>
+							<option value="junuary">styczeń</option>
+							<option value="february">luty</option>
+							<option value="march">marzec</option>
+							<option value="april">kwiecień</option>
+							<option value="may">maj</option>
+							<option value="june">czerwiec</option>
+							<option value="july">lipiec</option>
+							<option value="august">sierpień</option>
+							<option value="september">wrzesień</option>
+							<option value="october">październik</option>
+							<option value="november">listopad</option>
+							<option value="december">grudzień</option>
+							
+						</select>
+						
+					</div>
+					
+					<br /><br />
 					<input type="submit" />
 				</form>
 				
