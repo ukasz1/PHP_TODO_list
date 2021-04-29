@@ -22,14 +22,15 @@
 			</div>
 			
 			<div id="content">
-				<p>Aby wprowadzić nowy event uzupełnij opis, określ deadline i naciśnij przycisk.</p>
+				<h5>Aby wprowadzić nowy event uzupełnij opis, określ deadline i naciśnij przycisk Zatwierdź.</h5>
 				
-				<form action="">
+				<form action="" method="post">
+
 				
 					<div><textarea id="description" name="challenge" rows="4" cols="80" placeholder="Opis eventu..."></textarea></div>
 					
 					<div>
-						<label for="cars">Rodzaj zadania:</label>
+						<label for="cars">Rodzaj zadania</label>
 						<select name="taskName" id="taskName">
 							<option value="work">Praca</option>
 							<option value="study">Nauka</option>
@@ -39,7 +40,7 @@
 					</div>
 					
 					<div>
-						<label for="day">Deadline:</label>
+						<label for="day">Data</label>
 						<select name="day" id="day">
 							<option value="day">Dzień</option>
 							<option value="1">1</option>
@@ -92,10 +93,26 @@
 							
 						</select>
 						
+						<select name="year" id="year">
+							<option value="year">Rok</option>
+							<option value="2021">2021</option>
+							<option value="2022">2022</option>
+							<option value="2023">2023</option>
+							
+							
+						</select>
+						
 					</div>
 					
-					<br /><br />
-					<input type="submit" />
+					<div>
+						<label for="hour">Godzina</label>
+						<input type="text" class="setHour" name="hour" maxlength="2" /> :
+						<input type="text" class="setHour" name="minute" maxlength="2" />
+					</div>
+					
+					<input type="submit" value="Zatwierdź"/>
+					
+				
 				</form>
 				
 				
