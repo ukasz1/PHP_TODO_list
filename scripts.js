@@ -8,7 +8,7 @@ function TODOListGenerator(event, targetDate, timeRemaining){
     };
 }
 
-	// Pobieranie daty do nagłówka
+	// Gaining the date to the header
 
 function czas(){
 	var dzisiaj = new Date();
@@ -27,38 +27,67 @@ function czas(){
 		if (sekunda<10)
 			sekunda='0'+sekunda;
 
-		//Wypisywanie daty
+		//Date printing
 	document.getElementById('sekcja_daty').innerText =dzien + '/' + miesiac + '/' + rok + ' | ' + godzina + ':' + minuta + ':' + sekunda;
 
 	setTimeout("czas()",1000);
 }
-//---------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------- error flags
+let dayErr=true, monthErr=true, yearErr=true, hourErr=true, minuteErr=true;
 
+//---------------------------------------------------------------------------------------
 let dayId=document.getElementById('dayId');
 
 function dayCheck(){
 	let day = dayId.value;
 	
-	if(day=='day')
-		document.getElementById("dayComment").textContent='Proszę wprowadzić poprawny dzień. ';
-	else
+	if(day=='day'){
+		document.getElementById("dayComment").textContent='Niepoprawny dzień. ';
+		dayErr=true;
+	}
+	else{
 		document.getElementById("dayComment").textContent='';
+		dayErr=false;
+	}
 
 }
 
 dayId.addEventListener('blur', dayCheck, false);
 
-//--------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------
 let monthId=document.getElementById('monthId');
 
 function monthCheck(){
 	let month = monthId.value;
 	
-	if(month=='month')
-		document.getElementById("monthComment").textContent='Proszę wprowadzić poprawny miesiąc. ';
-	else
+	if(month=='month'){
+		document.getElementById("monthComment").textContent='Niepoprawny miesiąc. ';
+		monthErr=true;
+	}
+	else{
 		document.getElementById("monthComment").textContent='';
+		monthErr=false;
+	}
 
 }
 
 monthId.addEventListener('blur', monthCheck, false);
+
+//---------------------------------------------------------------------------------------
+
+let yearId=document.getElementById('yearId');
+
+function yearCheck(){
+	let year = yearId.value;
+	
+	if(year=='year'){
+		document.getElementById("yearComment").textContent='Niepoprawny rok. ';
+		yearErr=true;
+	}
+	else{
+		document.getElementById("yearComment").textContent='';
+		yearErr=false;
+	}
+}
+
+yearId.addEventListener('blur', yearCheck, false);
