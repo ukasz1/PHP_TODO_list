@@ -32,3 +32,33 @@ function czas(){
 
 	setTimeout("czas()",1000);
 }
+//---------------------------------------------------------------------------------------
+
+let dayId=document.getElementById('dayId');
+
+function dayCheck(){
+	let day = dayId.value;
+	
+	if(day=='day')
+		document.getElementById("dayComment").textContent='Proszę wprowadzić poprawny dzień. ';
+	else
+		document.getElementById("dayComment").textContent='';
+
+}
+
+dayId.addEventListener('blur', dayCheck, false);
+
+//--------------------------------------------------------------------------------------
+let monthId=document.getElementById('monthId');
+
+function monthCheck(){
+	let month = monthId.value;
+	
+	if(month=='month')
+		document.getElementById("monthComment").textContent='Proszę wprowadzić poprawny miesiąc. ';
+	else
+		document.getElementById("monthComment").textContent='';
+
+}
+
+monthId.addEventListener('blur', monthCheck, false);
