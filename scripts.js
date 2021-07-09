@@ -117,10 +117,28 @@ yearId.addEventListener('blur', yearCheck, false);
 let hourId = document.getElementById('hour-Id');
 
 const hourCheck = () => {
-	if(hourId.value == '')	//here add a comment, add validation
-		hourErr = true;
-	else
-		hourErr = false;
+	let hour = hourId.value;
+	
+	if(hour[0]==='0' && hour[1]!==undefined)	//hour format '0x' accepted, e.g. '05'
+		hour=hour[1];
+			
+			if(hour === String(parseInt(hour,10))) //main checking
+				;	
+			else{
+				hourErr = true;
+				document.getElementById("hourComment").textContent='Niepoprawna godzina. ';
+				return 0;
+			}
+			parseInt(hour,10);
+			
+			if(hour>=0 && hour<=23){
+				hourErr = false;
+				document.getElementById("hourComment").textContent='';
+			}
+			else{
+				hourErr = true;
+				document.getElementById("hourComment").textContent='Niepoprawna godzina. ';
+			}
 }
 
 hourId.addEventListener('blur', hourCheck, false);
