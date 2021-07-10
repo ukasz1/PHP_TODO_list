@@ -115,36 +115,54 @@ yearId.addEventListener('blur', yearCheck, false);
 
 //---------------------------------------------------------------------------------------
 let hourId = document.getElementById('hour-Id');
+let minuteId = document.getElementById('minute-Id');
 
-const hourCheck = () => {
-	let hour = hourId.value;
+const timeCheck = (timeUnit, endpoint) => {
+	let timeUnitValue = timeUnit.value;
+
+	let commentText = undefined;
+										//NEED TO ADD ERROR FLAG
+	if(endpoint == 23){
+		commentText = 'godzina';
+	}
+	else{
+		commentText = 'minuta';
+	}
 	
-	if(hour[0]==='0' && hour[1]!==undefined)	//hour format '0x' accepted, e.g. '05'
-		hour=hour[1];
+	
+	if(timeUnitValue[0]==='0' && timeUnitValue[1]!==undefined)	//hour format '0x' accepted, e.g. '05'
+		timeUnitValue=timeUnitValue[1];
 			
-			if(hour === String(parseInt(hour,10))) //main checking
+			if(timeUnitValue === String(parseInt(timeUnitValue,10))) //main checking
 				;	
 			else{
 				hourErr = true;
-				document.getElementById("hourComment").textContent='Niepoprawna godzina. ';
+				document.getElementById("hourComment").textContent='Niepoprawna '+ commentText +'. ';
 				return 0;
 			}
-			parseInt(hour,10);
+			parseInt(timeUnitValue,10);
 			
-			if(hour>=0 && hour<=23){
+			if(timeUnitValue>=0 && timeUnitValue<=endpoint){
 				hourErr = false;
 				document.getElementById("hourComment").textContent='';
 			}
 			else{
 				hourErr = true;
-				document.getElementById("hourComment").textContent='Niepoprawna godzina. ';
+				document.getElementById("hourComment").textContent='Niepoprawna '+ commentText +'. ';
 			}
 }
 
-hourId.addEventListener('blur', hourCheck, false);
+hourId.addEventListener('blur', function(){
+	timeCheck(hourId, 23);
+}, false);
+
+/*
+minuteId.addEventListener('blur', function(){
+	timeCheck(minuteId, 59);
+}, false);*/
 
 //---------------------------------------------------------------------------------------
-let minuteId = document.getElementById('minute-Id');
+
 
 const minuteCheck = () => {
 	if(minuteId.value == '')
