@@ -48,10 +48,14 @@ let eventErr=true, dayErr=true, monthErr=true, yearErr=true, hourErr=true, minut
 let description = document.getElementById('description');
 
 function descriptionCheck(){
-	if(description.value == '')
+	if(description.value == ''){
+		document.getElementById("eventComment").innerHTML='<br /> Opis nie może pozostać pusty. ';
 		eventErr=true;
-	else
+	}
+	else{
+		document.getElementById("eventComment").innerHTML='';
 		eventErr=false;
+	}
 }
 
 description.addEventListener('change', descriptionCheck, false);
@@ -117,61 +121,60 @@ yearId.addEventListener('blur', yearCheck, false);
 let hourId = document.getElementById('hour-Id');
 let minuteId = document.getElementById('minute-Id');
 
-const timeCheck = (timeUnit, endpoint) => {
+const timeCheck = (timeUnit, endpoint) => {	//time form validation function
+
+
+	function clockComment(endpoint){		// this inner function sets the correct error string while checking the time form
+
+		let commentId, commentContent;
+
+		if(endpoint == 23){
+			hourErr = true;
+			commentId = 'hourComment';
+			commentContent = 'godzina';
+		}
+		else{
+			minuteErr = true;
+			commentId = 'minuteComment';
+			commentContent = 'minuta';
+		}
+
+		return [commentId, commentContent];
+	}
+
 	let timeUnitValue = timeUnit.value;
 
-	let commentText = undefined;
-										//NEED TO ADD ERROR FLAG
-	if(endpoint == 23){
-		commentText = 'godzina';
-	}
-	else{
-		commentText = 'minuta';
-	}
-	
-	
 	if(timeUnitValue[0]==='0' && timeUnitValue[1]!==undefined)	//hour format '0x' accepted, e.g. '05'
 		timeUnitValue=timeUnitValue[1];
 			
-			if(timeUnitValue === String(parseInt(timeUnitValue,10))) //main checking
-				;	
-			else{
-				hourErr = true;
-				document.getElementById("hourComment").textContent='Niepoprawna '+ commentText +'. ';
-				return 0;
-			}
-			parseInt(timeUnitValue,10);
+	if(timeUnitValue === String(parseInt(timeUnitValue,10))) //main checking
+		;	
+	else{
+		document.getElementById(clockComment(endpoint)[0]).textContent='Niepoprawna '+ clockComment(endpoint)[1] +'. ';
+		return 0;
+	}
+	parseInt(timeUnitValue,10);
 			
-			if(timeUnitValue>=0 && timeUnitValue<=endpoint){
-				hourErr = false;
-				document.getElementById("hourComment").textContent='';
-			}
-			else{
-				hourErr = true;
-				document.getElementById("hourComment").textContent='Niepoprawna '+ commentText +'. ';
-			}
+	if(timeUnitValue>=0 && timeUnitValue<=endpoint){
+		document.getElementById(clockComment(endpoint)[0]).textContent='';
+		if(endpoint==23)
+			hourErr = false;
+		else
+			minuteErr = false;
+	}
+	else{
+		document.getElementById(clockComment(endpoint)[0]).textContent='Niepoprawna '+ clockComment(endpoint)[1] +'. ';
+	}
 }
 
 hourId.addEventListener('blur', function(){
 	timeCheck(hourId, 23);
 }, false);
 
-/*
+
 minuteId.addEventListener('blur', function(){
 	timeCheck(minuteId, 59);
-}, false);*/
-
-//---------------------------------------------------------------------------------------
-
-
-const minuteCheck = () => {
-	if(minuteId.value == '')
-		minuteErr = true;
-	else
-		minuteErr = false;
-}
-
-minuteId.addEventListener('blur', minuteCheck, false);
+}, false);
 
 //---------------------------------------------------------------------------------------
 
