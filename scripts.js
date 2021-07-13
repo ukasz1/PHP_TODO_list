@@ -59,6 +59,9 @@ function descriptionCheck(){
 }
 
 description.addEventListener('change', descriptionCheck, false);
+//---------------------------------------------------------------------------------------
+
+let taskName = document.getElementById('taskName');
 
 //---------------------------------------------------------------------------------------
 let dayId=document.getElementById('dayId');
@@ -182,14 +185,7 @@ const btn = document.getElementById('submit-form');
 
 btn.addEventListener('click', e => {
 	
-	e.preventDefault();
-	
-	if(eventErr + dayErr + monthErr + yearErr + hourErr + minuteErr !=0)
-		console.log('Błędny formularz');
-	else
-		console.log('Wszystko git!');
-	
-	console.log(`
+	console.log(`Error flags:
 	eventErr: ${eventErr}
 	dayErr: ${dayErr}
 	monthErr: ${monthErr}
@@ -197,5 +193,28 @@ btn.addEventListener('click', e => {
 	hourErr: ${hourErr}
 	minuteErr: ${minuteErr}
 `);
+	
+	if(eventErr + dayErr + monthErr + yearErr + hourErr + minuteErr !=0){
+		e.preventDefault();
+		console.log('Błędny formularz');
+		
+		let formFields = [description, taskName, dayId, monthId, yearId, hourId, minuteId];
+
+		let formFieldsValues = formFields.map(function(x){
+			return x.value;
+		});
+
+		console.log(formFieldsValues);
+		
+		addNewRecord();
+
+
+	}
+	else{
+		console.log('Wszystko OK');
+
+		
+	}
+	
 	
 }, false);
