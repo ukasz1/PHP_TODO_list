@@ -197,22 +197,35 @@ btn.addEventListener('click', e => {
 	if(eventErr + dayErr + monthErr + yearErr + hourErr + minuteErr !=0){
 		e.preventDefault();
 		console.log('Błędny formularz');
+	}
+	else{
 		
-		let formFields = [description, taskName, dayId, monthId, yearId, hourId, minuteId];
+		console.log('Wszystko OK');
+		let formFields = [description, taskName, dayId, monthId, yearId, hourId, minuteId];	//form tags in array
 
-		let formFieldsValues = formFields.map(function(x){
+		let formFieldsValues = formFields.map(function(x){									//form values in array
 			return x.value;
 		});
 
-		console.log(formFieldsValues);
+		/* FIX IT  */
+
+		console.log('formFields: ' + formFields);
+		console.log('formFieldsValues: ' + formFieldsValues);
+
+		let formObject = {
+			description : description,
+			taskName : taskName, 
+			dayId : dayId, 
+			monthId : monthId, 
+			yearId : yearId, 
+			hourId : hourId, 
+			minuteId : minuteId
+		}
+
+		console.log('Przekazane wartości to: ' + formObject + formObject.description);
 		
-		addNewRecord();
-
-
-	}
-	else{
-		console.log('Wszystko OK');
-
+		e.preventDefault();
+		//addNewRecord();
 		
 	}
 	
