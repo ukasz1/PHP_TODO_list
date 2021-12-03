@@ -25,11 +25,11 @@
 		<div id="content">
 			<h5>Aby wprowadzić nowy event uzupełnij opis, określ deadline i naciśnij przycisk Dodaj.</h5>
 	
-			<form action="" method="post">
+			<form action="newRecord.php" method="post">
 	
 	
 				<div>
-					<textarea id="description" name="challenge" rows="4" cols="80" placeholder="Opis eventu..."></textarea>
+					<textarea id="description" name="description" rows="4" cols="80" placeholder="Opis eventu..."></textarea>
 					<span id="eventComment" class="redFont"></span>
 				</div>
 	
@@ -118,7 +118,7 @@
 					<span id="minuteComment" class="redFont"></span>
 				</div>
 	
-				<button type="submit" id="submit-form" class="button button-form">Dodaj</button>
+				<input type="submit" id="submit-form" class="button button-form" value="Dodaj" />
 			</form>
 		</div>
 	</div>
@@ -157,6 +157,5 @@
 </body>
 
 <script src="scripts.js" type="text/javascript"></script>
-<script src="new-record.js" type="text/javascript"></script>
 
 </html>

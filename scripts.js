@@ -207,24 +207,9 @@ btn.addEventListener('click', e => {
 			return x.value;
 		});
 
-		/* FIX IT  */
-
-		console.log('formFields: ' + formFields);
-		console.log('formFieldsValues: ' + formFieldsValues);
-
-		let formObject = {
-			description : description,
-			taskName : taskName, 
-			dayId : dayId, 
-			monthId : monthId, 
-			yearId : yearId, 
-			hourId : hourId, 
-			minuteId : minuteId
-		}
-
-		console.log('Przekazane wartości to: ' + formObject + formObject.description);
+		console.log('Przekazane wartości to: ' + formFieldsValues);
 		
-		e.preventDefault();
+		//e.preventDefault();
 		//addNewRecord();
 		
 	}
