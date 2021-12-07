@@ -6,9 +6,11 @@
 	<link href="styles.css" type="text/css" rel="stylesheet" />
 
 	<title>TODO list</title>
+
+	
 </head>
 
-<body onload="czas()">
+<body> <!-- onload="czas(), loadDoc()"  -->
 	<div id="allDocument">
 	
 		<header>
@@ -141,14 +143,20 @@
 			</thead>
 			<tbody>
 				<!-- tutaj wstawić dane z bazy danych -->
-				<span id="DBdata"></span>
+				
 			</tbody>
 
 		</table>
 
+		<button type="button" id="zxc">Aktualizacja</button>
 	</div>
+	
 </body>
 
+
 <script src="scripts.js" type="text/javascript"></script>
+<script src="dataLoad.js" type="text/javascript"></script>
+<script src="unixTimeDecoding.js" type="text/javascript"></script>
+
 
 </html>

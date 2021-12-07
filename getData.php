@@ -11,6 +11,7 @@
 -->
 
 <!-- <table> -->
+    <table>
 <tr>
 
 
@@ -48,16 +49,28 @@
                     $minuty = $wiersz['minuty'];
                     $czas_UNIX = $wiersz['czas_UNIX'];
 
-                    echo "<td width='50' align='center'>$id</td>";
-                    echo "<td width='50' align='center'>$rodzaj</td>";
-                    echo "<td width='50' align='center'>$tresc</td>";
-                    echo "<td width='50' align='center'>$dzien</td>";
-                    echo "<td width='50' align='center'>$miesiac</td>";
-                    echo "<td width='50' align='center'>$rok</td>";
-                    echo "<td width='50' align='center'>$godziny</td>";
-                    echo "<td width='50' align='center'>$minuty</td>";
-                    echo "<td width='50' align='center'>$czas_UNIX</td>";
+                    // text formatting 
+                    $dzien_txt = $dzien;
+                    if($dzien_txt<10)
+                        $dzien_txt='0'.$dzien_txt;
+
+                    $miesiac_txt = $miesiac;
+                    if($miesiac_txt<10)
+                        $miesiac_txt='0'.$miesiac_txt;
+
+                    $minuty_txt = $minuty;
+                    if($minuty_txt<10)
+                        $minuty_txt='0'.$minuty_txt;
+
+                    echo "<td align='center'>$id</td>";
+                    echo "<td align='center'>$rodzaj</td>";
+                    echo "<td align='center'>$tresc</td>";
+                    echo "<td align='center'>$dzien_txt/$miesiac_txt/$rok</td>";
+                    echo "<td align='center'>$godziny:$minuty_txt</td>";
+                    echo "<td class='timeRemaining'>$czas_UNIX</td>";
+                    echo "<td class='cancel'><img src='Pliki/cancel-icon2.png' width='30%'></td>";
                     echo "</tr><tr>";
+
                 }
 
                 $rezultat->free_result();   //czyszczenie pamięci
@@ -73,6 +86,7 @@
 
 ?>
 </tr>
+</table>
 <!-- </table> -->
 
 <!--

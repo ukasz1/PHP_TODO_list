@@ -1,14 +1,4 @@
-/*Funkcja konstruktora do tworzenia obiektu eventu*/ 
-
-function TODOListGenerator(event, targetDate, timeRemaining){
-    this.event = event;
-    this.targetDate = targetDate;
-    this.timeRemaining = function (todaysDate){
-        return this.targetDate-todaysDate;
-    };
-}
-
-	// Gaining the date to the header
+//Gaining the date to the header
 
 function czas(){
 	var dzisiaj = new Date();
@@ -32,6 +22,11 @@ function czas(){
 
 	setTimeout("czas()",1000);
 }
+
+var body = document.getElementsByTagName('body')[0]; 	//or window.addEventListener('DOMContentLoaded', czas, false);
+body.onload = czas;		
+
+
 //--------------------------------------------------------------------------------------- error flags
 let eventErr=true, dayErr=true, monthErr=true, yearErr=true, hourErr=true, minuteErr=true;
 
