@@ -9,21 +9,54 @@ function loadDoc(){
     xhttp.send();
 }
 
+window.addEventListener('DOMContentLoaded', function(){
+    loadDoc();
+}, false);
 
-window.addEventListener('DOMContentLoaded', loadDoc, false);
+setTimeout(function(){
+    timeDecode();
+},100);
+
+//----------
+function timeDecode(){
+    let today = new Date();
+    let todayUnitime = today.getTime();
+    let timeList = document.getElementsByClassName('timeRemaining');
+    const tab = new Array(timeList.length);
+
+    for (let i=0; i<tab.length; i++){
+        tab[i] = Number(timeList[i].innerHTML);
+        tab[i] = tab[i] - todayUnitime;
+        timeList[i].textContent = timeLeft(tab[i]);
+        console.log(timeList[i]);
+    }
+};
 
 
-function spadaj(){
-    /*console.log(document.getElementsByClassName('timeRemaining').length);*/
-    //let dzisiaj = new Date();
-    let jutro = new Date(2022, 0, 3, 10, 25, 0);
-    let pojutrze = new Date(2022, 4, 3, 15, 0, 0);
-    let roznica = pojutrze - jutro;
-    console.log(roznica);
-    //console.log(jutro.getTime());
-    //console.log(pojutrze.getTime());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// var zxc = document.getElementById('zxc');
+// zxc.addEventListener('click', test, false);
+
+//window.addEventListener('DOMContentLoaded', spadaj, false);
+
+/*
+window.addEventListener('DOMContentLoaded', wstaw, false);
+function wstaw(){
+	document.getElementsByClassName('timeRemaining')[0].innerHTML='<b>asdz</b>';
 }
-
-var zxc = document.getElementById('zxc');
-zxc.addEventListener('click', spadaj, false);
-
+window.addEventListener('DOMContentLoaded', wstaw, false);
+*/
