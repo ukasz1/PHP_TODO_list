@@ -13,11 +13,56 @@ window.addEventListener('DOMContentLoaded', function(){
     loadDoc();
 }, false);
 
+//----------
+
+
+function firstTimeLoad(){
+    let today = new Date();
+    let todayUnitime = today.getTime();
+    let timeList = document.getElementsByClassName('timeRemaining');
+    let uniTimeRemainingTab = new Array(timeList.length);
+
+    for (let i=0; i<uniTimeRemainingTab.length; i++){
+        uniTimeRemainingTab[i] = Number(timeList[i].innerHTML);
+        uniTimeRemainingTab[i] = uniTimeRemainingTab[i] - todayUnitime + 1000;
+        timeList[i].textContent = uniTimeRemainingTab[i];
+        console.log(uniTimeRemainingTab[i]);
+    }
+
+
+}
+
+function uniTimeRefresh(){
+
+    let timeList = document.getElementsByClassName('timeRemaining');
+    let uniTimeRemainingTab = new Array(timeList.length);
+
+    for (let i=0; i<uniTimeRemainingTab.length; i++){
+        uniTimeRemainingTab[i] = Number(timeList[i].innerHTML);
+        uniTimeRemainingTab[i] = uniTimeRemainingTab[i] - 1000;
+
+        if(uniTimeRemainingTab[i] <= 0){
+            continue;
+        }
+        timeList[i].textContent = uniTimeRemainingTab[i];
+
+    }
+
+    console.log(timeList);
+    console.log(uniTimeRemainingTab);
+
+    setTimeout(function(){uniTimeRefresh()},1000);
+}
+
 setTimeout(function(){
-    timeDecode();
+    firstTimeLoad();
+    uniTimeRefresh()
+
 },100);
 
-//----------
+
+
+/*
 function timeDecode(){
     let today = new Date();
     let todayUnitime = today.getTime();
@@ -31,7 +76,7 @@ function timeDecode(){
         console.log(timeList[i]);
     }
 };
-
+*/
 
 
 
