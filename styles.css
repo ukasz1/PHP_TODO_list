@@ -75,3 +75,6 @@ td{
 	border-radius: 5px;
 }
 
+.cancel:hover{
+	cursor: pointer;
+}

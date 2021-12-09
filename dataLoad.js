@@ -49,7 +49,7 @@ function uniTimeRefresh(){              // <--- refreshing the time every second
 setTimeout(function(){
     firstTimeLoad();
     uniTimeRefresh();
-
+    cancel();
 
 },100);
 
