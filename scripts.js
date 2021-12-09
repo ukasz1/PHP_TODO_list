@@ -19,9 +19,12 @@ function czas(){
 
 		//Date printing
 	document.getElementById('sekcja_daty').innerText =dzien + '/' + miesiac + '/' + rok + ' | ' + godzina + ':' + minuta + ':' + sekunda;
-
-	setTimeout("czas()",1000);
+	//document.getElementsByClassName('timeRemaining')[0].innerText =dzien + '/' + miesiac + '/' + rok + ' | ' + godzina + ':' + minuta + ':' + sekunda;
+	//document.getElementsByClassName('timeRemaining')[1].innerText =dzien + '/' + miesiac + '/' + rok + ' | ' + godzina + ':' + minuta + ':' + sekunda;
+	
+	setTimeout(function(){czas()},1000);
 }
+
 
 var body = document.getElementsByTagName('body')[0]; 	//or window.addEventListener('DOMContentLoaded', czas, false);
 body.onload = czas;		

@@ -15,93 +15,42 @@ window.addEventListener('DOMContentLoaded', function(){
 
 //----------
 
+var tab = [];                           // <--- stores the number of milliseconds for each activity till the deadline
 
-function firstTimeLoad(){
+function firstTimeLoad(){               // <--- time calculation for deadline in ms
     let today = new Date();
     let todayUnitime = today.getTime();
     let timeList = document.getElementsByClassName('timeRemaining');
-    let uniTimeRemainingTab = new Array(timeList.length);
 
-    for (let i=0; i<uniTimeRemainingTab.length; i++){
-        uniTimeRemainingTab[i] = Number(timeList[i].innerHTML);
-        uniTimeRemainingTab[i] = uniTimeRemainingTab[i] - todayUnitime + 1000;
-        timeList[i].textContent = uniTimeRemainingTab[i];
-        console.log(uniTimeRemainingTab[i]);
+    for (let i=0; i<timeList.length; i++){
+        tab.push(Number(timeList[i].innerHTML));
+        tab[i] = tab[i] - todayUnitime + 1000;
+        timeList[i].textContent = tab[i];
+        console.log(tab[i]);
     }
-
-
 }
 
-function uniTimeRefresh(){
+function uniTimeRefresh(){              // <--- refreshing the time every second
+    for (let i=0; i<tab.length; i++){
+        tab[i] = tab[i] - 1000;
 
-    let timeList = document.getElementsByClassName('timeRemaining');
-    let uniTimeRemainingTab = new Array(timeList.length);
-
-    for (let i=0; i<uniTimeRemainingTab.length; i++){
-        uniTimeRemainingTab[i] = Number(timeList[i].innerHTML);
-        uniTimeRemainingTab[i] = uniTimeRemainingTab[i] - 1000;
-
-        if(uniTimeRemainingTab[i] <= 0){
+        if(tab[i] <= 0)
             continue;
-        }
-        timeList[i].textContent = uniTimeRemainingTab[i];
+        
+        let timeList = document.getElementsByClassName('timeRemaining');
+        timeList[i].textContent = timeLeft(tab[i]);
 
+        //timeList[i].textContent = tab[i];
     }
-
-    console.log(timeList);
-    console.log(uniTimeRemainingTab);
-
+    console.log(tab);
     setTimeout(function(){uniTimeRefresh()},1000);
 }
 
 setTimeout(function(){
     firstTimeLoad();
-    uniTimeRefresh()
+    uniTimeRefresh();
+
 
 },100);
 
 
-
-/*
-function timeDecode(){
-    let today = new Date();
-    let todayUnitime = today.getTime();
-    let timeList = document.getElementsByClassName('timeRemaining');
-    const tab = new Array(timeList.length);
-
-    for (let i=0; i<tab.length; i++){
-        tab[i] = Number(timeList[i].innerHTML);
-        tab[i] = tab[i] - todayUnitime;
-        timeList[i].textContent = timeLeft(tab[i]);
-        console.log(timeList[i]);
-    }
-};
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// var zxc = document.getElementById('zxc');
-// zxc.addEventListener('click', test, false);
-
-//window.addEventListener('DOMContentLoaded', spadaj, false);
-
-/*
-window.addEventListener('DOMContentLoaded', wstaw, false);
-function wstaw(){
-	document.getElementsByClassName('timeRemaining')[0].innerHTML='<b>asdz</b>';
-}
-window.addEventListener('DOMContentLoaded', wstaw, false);
-*/

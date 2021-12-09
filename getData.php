@@ -1,3 +1,4 @@
+
 <!--
 <!DOCTYPE HTML>
 <html lang="pl">
@@ -27,7 +28,7 @@
     }
     else{
 
-        $sql = "SELECT * FROM deadline LIMIT 2";
+        $sql = "SELECT * FROM deadline ORDER BY czas_UNIX ASC";
 
         if ($rezultat = @$polaczenie->query($sql)){
             //$ilu_userow = $rezultat->num_rows;
@@ -39,7 +40,7 @@
                 for ($i = 1; $i <= $ilu_userow; $i++){
                     
                     $wiersz = mysqli_fetch_assoc($rezultat);
-                    $id = $wiersz['id'];
+                    // $id = $wiersz['id'];
                     $rodzaj = $wiersz['rodzaj'];
                     $tresc = $wiersz['tresc'];
                     $dzien = $wiersz['dzien'];
@@ -62,7 +63,7 @@
                     if($minuty_txt<10)
                         $minuty_txt='0'.$minuty_txt;
 
-                    echo "<td align='center'>$id</td>";
+                    echo "<td align='center'>$i</td>";
                     echo "<td align='center'>$rodzaj</td>";
                     echo "<td align='center'>$tresc</td>";
                     echo "<td align='center'>$dzien_txt/$miesiac_txt/$rok</td>";
