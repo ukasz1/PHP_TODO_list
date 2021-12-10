@@ -4,6 +4,28 @@ function timeLeft(ux_milliseconds){
 
     let ms_remaining = ux_milliseconds;
 
+    let unidays = Math.floor(ms_remaining/86400); //24*60*60*1000 = 86400000 ms / day
+        ms_remaining = ms_remaining-unidays*86400;
+    let unihours = Math.floor(ms_remaining/3600); //60*60*1000 = 3600000 ms / hour
+        if (unihours<10)
+            unihours = '0' + unihours;
+        ms_remaining = ms_remaining-unihours*3600;
+    let uniminutes = Math.floor(ms_remaining/60);
+        if (uniminutes<10)
+            uniminutes = '0' + uniminutes;
+        ms_remaining = ms_remaining-uniminutes*60;
+    let uniseconds = Math.floor(ms_remaining);
+        if (uniseconds<10)
+        uniseconds = '0' + uniseconds;
+    //console.log(unidays + " dni " + unihours + " g." + uniminutes + " m. " + uniseconds + " s.");
+    return unidays + " | " + unihours + ":" + uniminutes + ":" + uniseconds;
+}
+
+/*
+function timeLeft(ux_milliseconds){
+
+    let ms_remaining = ux_milliseconds;
+
     let unidays = Math.floor(ms_remaining/86400000); //24*60*60*1000 = 86400000 ms / day
         ms_remaining = ms_remaining-unidays*86400000;
     let unihours = Math.floor(ms_remaining/3600000); //60*60*1000 = 3600000 ms / hour
@@ -20,3 +42,4 @@ function timeLeft(ux_milliseconds){
     //console.log(unidays + " dni " + unihours + " g." + uniminutes + " m. " + uniseconds + " s.");
     return unidays + " | " + unihours + ":" + uniminutes + ":" + uniseconds;
 }
+*/

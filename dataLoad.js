@@ -19,6 +19,46 @@ var tab = [];                           // <--- stores the number of millisecond
 
 function firstTimeLoad(){               // <--- time calculation for deadline in ms
     let today = new Date();
+    let todayUnitime = today.getTime()/1000;
+    let timeList = document.getElementsByClassName('timeRemaining');
+
+    for (let i=0; i<timeList.length; i++){
+        tab.push(Number(timeList[i].innerHTML));
+        tab[i] = tab[i] - todayUnitime + 1;
+        timeList[i].textContent = tab[i];
+        console.log(tab[i]);
+    }
+}
+
+function uniTimeRefresh(){              // <--- refreshing the time every second
+    for (let i=0; i<tab.length; i++){
+        tab[i] = tab[i] - 1;
+
+        if(tab[i] <= 0){
+            let timeList = document.getElementsByClassName('timeRemaining');
+            timeList[i].textContent = '0 | 00:00:00';
+            continue;
+        }
+        else{
+        let timeList = document.getElementsByClassName('timeRemaining');
+        timeList[i].textContent = timeLeft(tab[i]);
+        }
+        //timeList[i].textContent = tab[i];
+    }
+    console.log(tab);
+    setTimeout(function(){uniTimeRefresh()},1000);
+}
+
+setTimeout(function(){
+    firstTimeLoad();
+    uniTimeRefresh();
+    cancel();
+
+},100);
+
+/*
+function firstTimeLoad(){               // <--- time calculation for deadline in ms
+    let today = new Date();
     let todayUnitime = today.getTime();
     let timeList = document.getElementsByClassName('timeRemaining');
 
@@ -51,6 +91,6 @@ setTimeout(function(){
     uniTimeRefresh();
     cancel();
 
-},100);
+},100); */
 
 

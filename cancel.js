@@ -16,7 +16,9 @@ function cancel(){
             newInput1.type = 'hidden';
             newInput1.name = 'input_1';
 
-            newInput1.value = recordX[i].id[3];
+            let dbID = recordX[i].id.substr(3);
+
+            newInput1.value = Number(dbID); //recordX[i].id[3]
 
             theForm.appendChild(newInput1);
 

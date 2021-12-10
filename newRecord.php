@@ -1,14 +1,9 @@
-<!DOCTYPE HTML>
-<html lang="pl">
-<head>
-    <meta charset="utf-8" />
-
-</head>
-
-<body>
-
-<table>
 <?php
+    if(!isset($_POST['description'])){
+        header('Location: index.html');
+        exit();
+    }
+
     require_once "connect.php";
 
     $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name); //połączenie z DB
@@ -28,48 +23,57 @@
         $hour = $_POST['hour'];
         $minute = $_POST['minute'];
 
-        $sql = "SELECT * FROM deadline LIMIT 2";
+        //$nextWeek = time() + (7 * 24 * 60 * 60)
+        $date=date_create("$year-$month-$day");
+        date_time_set($date, $hour, $minute);
 
-        if ($rezultat = @$polaczenie->query($sql)){
-            $ilu_userow = $rezultat->num_rows;
-            if($ilu_userow>0){
-                $wiersz = $rezultat->fetch_assoc();
-                
-                echo $wiersz['id']." ";
-                echo $wiersz['rodzaj']." ";
-                echo $wiersz['tresc']." ";
-                echo $wiersz['dzien']." ";
-                echo $wiersz['miesiac']." ";
-                echo $wiersz['rok']." ";
-                echo $wiersz['godziny']." ";
-                echo $wiersz['minuty']." | ";
-                echo $wiersz['czas_UNIX']." ";
+        $unixTime = date_timestamp_get($date);
+        //$unixTime = $unixTime*1000;
 
-                $rezultat->free_result();   //czyszczenie pamięci
-            }
-            else{
+        echo $description."<br />";
+        echo $taskName."<br />";
+        echo $day."<br />";
+        echo $month."<br />";
+        echo $year."<br />";
+        echo $hour."<br />";
+        echo $minute."<br />";
+        echo $unixTime."<br />";
 
-            }
-        };
+        $sql = "INSERT INTO deadline VALUES (NULL, '$taskName', '$description', $day, $month, $year, $hour, $minute, $unixTime)";
 
+        /*(NULL, $taskName, $description, $day, $month, $year, $hour, $minute, $unixTime)"; */
 
-/*echo "<tr>";
-echo "<td>1</td>";
-echo "<td>$taskName</td>";
-echo "<td>$description</td>";
-echo "<td>$day $month $year</td>";
-echo "<td>$hour:$minute</td>";
-echo "<td>Pozostały czas</td>";
-echo "<td>X</td>";
-echo "</tr>";*/
+        if($rezultat = $polaczenie->query($sql)){
+            echo "Wpisano do bazy";
+        }
+        else{
+            echo "Coś zwalone <br />";
+            echo "Error: ";
+        }
 
         $polaczenie->close();
+        header('Location: index.html');
+
+        //header('Location: index.html');
     }
     
+/*
+<select name="month" id="monthId">
+						<option value="month">Miesiąc</option>
+						<option value="junuary">styczeń</option>
+						<option value="february">luty</option>
+						<option value="march">marzec</option>
+						<option value="april">kwiecień</option>
+						<option value="may">maj</option>
+						<option value="june">czerwiec</option>
+						<option value="july">lipiec</option>
+						<option value="august">sierpień</option>
+						<option value="september">wrzesień</option>
+						<option value="october">październik</option>
+						<option value="november">listopad</option>
+						<option value="december">grudzień</option>
+
+*/
 
 ?>
 
-</table>
-
-</body>
-</html>
