@@ -4,9 +4,9 @@ if(isset($_POST['input_1'])){
 
     require_once "connect.php";
 
-    $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name); //połączenie z DB
+    $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name); 
 
-    if ($polaczenie->connect_errno!=0){     // czy jest błąd połączenia
+    if ($polaczenie->connect_errno!=0){     
         echo "Error: ".$polaczenie->connect_errno;
     }
     else{

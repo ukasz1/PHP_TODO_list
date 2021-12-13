@@ -19,8 +19,6 @@ function czas(){
 
 		//Date printing
 	document.getElementById('sekcja_daty').innerText =dzien + '/' + miesiac + '/' + rok + ' | ' + godzina + ':' + minuta + ':' + sekunda;
-	//document.getElementsByClassName('timeRemaining')[0].innerText =dzien + '/' + miesiac + '/' + rok + ' | ' + godzina + ':' + minuta + ':' + sekunda;
-	//document.getElementsByClassName('timeRemaining')[1].innerText =dzien + '/' + miesiac + '/' + rok + ' | ' + godzina + ':' + minuta + ':' + sekunda;
 	
 	setTimeout(function(){czas()},1000);
 }
@@ -31,7 +29,7 @@ body.onload = czas;
 
 
 //--------------------------------------------------------------------------------------- error flags
-let eventErr=true, dayErr=true, monthErr=true, yearErr=true, hourErr=true, minuteErr=true;
+let eventErr=true, dayErr=true, monthErr=true, yearErr=true, hourErr=true, minuteErr=true, dayMonthErr=true, pastDateErr=true;
 
 /*
 	eventErr=true 	-	the event description is empty
@@ -47,16 +45,14 @@ let description = document.getElementById('description');
 
 function descriptionCheck(){
 	if(description.value == ''){
-		document.getElementById("eventComment").innerHTML='<br /> Opis nie może pozostać pusty. ';
+		document.getElementById("eventComment").textContent='Opis nie może pozostać pusty. ';
 		eventErr=true;
 	}
 	else{
-		document.getElementById("eventComment").innerHTML='';
+		document.getElementById("eventComment").textContent='';
 		eventErr=false;
 	}
 }
-
-description.addEventListener('change', descriptionCheck, false);
 //---------------------------------------------------------------------------------------
 
 let taskName = document.getElementById('taskName');
@@ -103,6 +99,7 @@ monthId.addEventListener('blur', monthCheck, false);
 
 let yearId=document.getElementById('yearId');
 
+
 function yearCheck(){
 	let year = yearId.value;
 	
@@ -118,12 +115,32 @@ function yearCheck(){
 
 yearId.addEventListener('blur', yearCheck, false);
 
+//---- number of days in month checking
+const monthDaysTab = [null, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+function dayMonthCheck(){
+	let day = dayId.value;
+	let month = monthId.value;
+	let year = yearId.value;
+
+	if(day<=monthDaysTab[month])
+		dayMonthErr = false;
+	else
+		if(year==2024 && month==2 && day==29)
+			dayMonthErr = false;
+		else
+			dayMonthErr = true;
+	
+	if(dayMonthErr==true)
+		document.getElementById('dayMonthComment').textContent = ' Wybrana data nie istnieje.';
+	else
+		document.getElementById('dayMonthComment').textContent = '';	
+}
 //---------------------------------------------------------------------------------------
 let hourId = document.getElementById('hour-Id');
 let minuteId = document.getElementById('minute-Id');
 
 const timeCheck = (timeUnit, endpoint) => {	//time form validation function
-
 
 	function clockComment(endpoint){		// this inner function sets the correct error string while checking the time form
 
@@ -172,17 +189,48 @@ hourId.addEventListener('blur', function(){
 	timeCheck(hourId, 23);
 }, false);
 
-
 minuteId.addEventListener('blur', function(){
 	timeCheck(minuteId, 59);
 }, false);
 
-//---------------------------------------------------------------------------------------
+//------- checking if date is not past
+
+function pastDate(){
+	let day = dayId.value;
+	let month = monthId.value;
+	let year = yearId.value;
+	let hour = minuteId.value;
+	let minute = minuteId.value;
+
+	let newDate = new Date(year, month-1, day, hour, minute, 0);
+	let newUniTime = newDate.getTime();
+
+	let currentTime = new Date();
+	let currentUniTime = currentTime.getTime();
+
+	if(newUniTime < currentUniTime)
+		pastDateErr = true;
+	else
+		pastDateErr = false;
+
+	if(pastDateErr==true)
+		document.getElementById('pastDateComment').textContent = ' Wprowadź przyszły czas.';
+	else
+		document.getElementById('pastDateComment').textContent = '';
+}
+
+//------------------- SUBMITTING FORM
 
 const btn = document.getElementById('submit-form');
 
 btn.addEventListener('click', e => {
-	
+
+	descriptionCheck();
+	dayMonthCheck();
+	pastDate();
+
+//------- checking errors
+
 	console.log(`Error flags:
 	eventErr: ${eventErr}
 	dayErr: ${dayErr}
@@ -190,9 +238,10 @@ btn.addEventListener('click', e => {
 	yearErr: ${yearErr}
 	hourErr: ${hourErr}
 	minuteErr: ${minuteErr}
-`);
-	
-	if(eventErr + dayErr + monthErr + yearErr + hourErr + minuteErr !=0){
+	dayMonthErr: ${dayMonthErr}
+	pastDateErr: ${pastDateErr}	`);
+
+	if(eventErr + dayErr + monthErr + yearErr + hourErr + minuteErr + dayMonthErr + pastDateErr !=0){
 		e.preventDefault();
 		console.log('Błędny formularz');
 	}
@@ -208,9 +257,6 @@ btn.addEventListener('click', e => {
 		console.log('Przekazane wartości to: ' + formFieldsValues);
 		
 		//e.preventDefault();
-		//addNewRecord();
-		
 	}
-	
 	
 }, false);

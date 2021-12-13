@@ -32,7 +32,6 @@
 	
 				<div>
 					<textarea id="description" name="description" rows="4" cols="80" placeholder="Opis eventu..."></textarea>
-					<span id="eventComment" class="redFont"></span>
 				</div>
 	
 				<div>
@@ -103,6 +102,7 @@
 						<option value="2021">2021</option>
 						<option value="2022">2022</option>
 						<option value="2023">2023</option>
+						<option value="2024">2024</option>
 					</select>
 	
 					<span id="dayComment" class="redFont"></span>
@@ -121,6 +121,9 @@
 				</div>
 	
 				<input type="submit" id="submit-form" class="button button-form" value="Dodaj" />
+				<span id="eventComment" class="redFont"></span>
+				<span id="dayMonthComment" class="redFont"></span>
+				<span id="pastDateComment" class="redFont"></span>
 			</form>
 		</div>
 	</div>
@@ -155,13 +158,9 @@
 	
 </body>
 
-
 <script src="scripts.js" type="text/javascript"></script>
 <script src="unixTimeDecoding.js" type="text/javascript"></script>
 <script src="cancel.js" type="text/javascript"></script>
 <script src="dataLoad.js" type="text/javascript"></script>
-
-
-
 
 </html>

@@ -15,7 +15,7 @@ window.addEventListener('DOMContentLoaded', function(){
 
 //----------
 
-var tab = [];                           // <--- stores the number of milliseconds for each activity till the deadline
+var tab = [];                           // <--- stores the number of seconds for each activity till the deadline
 
 function firstTimeLoad(){               // <--- time calculation for deadline in ms
     let today = new Date();
@@ -26,7 +26,7 @@ function firstTimeLoad(){               // <--- time calculation for deadline in
         tab.push(Number(timeList[i].innerHTML));
         tab[i] = tab[i] - todayUnitime + 1;
         timeList[i].textContent = tab[i];
-        console.log(tab[i]);
+        //console.log(tab[i]);
     }
 }
 
@@ -45,7 +45,7 @@ function uniTimeRefresh(){              // <--- refreshing the time every second
         }
         //timeList[i].textContent = tab[i];
     }
-    console.log(tab);
+    //console.log(tab);
     setTimeout(function(){uniTimeRefresh()},1000);
 }
 

@@ -42,7 +42,7 @@
 */
         $sql = "INSERT INTO deadline VALUES (NULL, '$taskName', '$description', $day, $month, $year, $hour, $minute, $unixTime)";
 
-        if($rezultat = $polaczenie->query($sql)){
+        if($rezultat = @$polaczenie->query($sql)){
             echo "Wpisano do bazy";
         }
         else{
