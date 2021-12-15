@@ -4,7 +4,9 @@ TODO list is a standard app which allows user to remember future events by setti
 ## About project
 The application allows you to create a new event, view a list of current events and delete a selected item.
 
-Each item has its own deadline which need to be fixed at start. The app shows the remaining time for all items. The time is refreshed every second and shows the number of days, hours, minutes and seconds till the end. A user is not able to create an event for the past time. The form error messages are provided.
+Each item has its own deadline which need to be fixed at start. The app shows the remaining time for all items. The time is refreshed every second and shows the number of days, hours, minutes and seconds till the end. A user is not able to create an event for the past time. Earlier events are always at the top of the list and later events are always below. The form error messages are provided.
+
+The goal was to practice backend skills, especialy checking how backend scripts communicate and work with database. This project was also a good opportunity to learn more about PHP and AJAX.
 
 ## Used technology
 <ul>
@@ -15,7 +17,7 @@ Each item has its own deadline which need to be fixed at start. The app shows th
 </ul>
 
 ## Using the App
-To run this up you need to use Apache HTTP Server, MySQL DB and PHP interpreter. You can use XAMPP Control Panel to provide it.
+To run this app you need to use Apache HTTP Server, MySQL DB and PHP interpreter. You can use XAMPP Control Panel to provide it.
 
 <ol>
   <li>Install XAMPP Control Panel</li>
@@ -28,3 +30,8 @@ To run this up you need to use Apache HTTP Server, MySQL DB and PHP interpreter.
   <li>Select 'todoUkasz1' database on the left and click 'Import' tab on the top. Choose the file 'todoukasz1.sql' based in X/DB ('X' is your new directory in 'htdocs'). Make sure if the coding type below is set to 'utf-8'. Accept it downsite</li>
   <li>Done! Now you can run your App. To do so, open your browser and write 'localhost/X' in the address bar.</li>
 </ol>
+
+## Screenshots
+![todoview](https://user-images.githubusercontent.com/46789003/146185079-f8d5a623-66fb-4e74-9a56-5f9bd0ca2ee8.PNG)
+## Further development
+To improve the app every single events could have a progress bar. It can be a graphical presentation of advancement status.
