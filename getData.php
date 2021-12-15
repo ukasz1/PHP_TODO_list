@@ -6,7 +6,7 @@
     $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name); //connection with DB
 
     if ($polaczenie->connect_errno!=0){     // is connection error?
-        echo "Error: ".$polaczenie->connect_errno;
+        //echo "Error: ".$polaczenie->connect_errno.;
     }
     else{
 

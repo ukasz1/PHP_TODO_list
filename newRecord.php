@@ -9,7 +9,11 @@
     $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name); //połączenie z DB
 
     if ($polaczenie->connect_errno!=0){     // czy jest błąd połączenia
-        echo "Error: ".$polaczenie->connect_errno;
+        echo "<code><h1>Error: ".$polaczenie->connect_errno;
+        echo "</h1>";
+        echo "<h2>Oops. It seems the database has <b>not been linked</b>. Please follow this <a href='https://github.com/ukasz1/TODO_list'>link</a> ";
+        echo "to see a README file ('Using the App?' part).";
+        echo "<br /><br />Thank You!</h2></code>";
     }
     else{
 
